@@ -146,7 +146,7 @@ Solutions are provided in the [`solutions/`](./solutions/) directory.
 
 Before starting the exercises:
 
-- System is running (`docker-compose up`)
+- System is running (`docker compose up`)
 - Basic understanding of Docker and containers
 - Access to Jaeger UI (<http://localhost:16686>)
 - Access to Prometheus UI (<http://localhost:9090>)

@@ -11,7 +11,7 @@
 
 ## Prerequisites
 
-- System is running (`docker-compose up`)
+- System is running (`docker compose up`)
 - Basic understanding of observability concepts
 - Access to Jaeger UI (<http://localhost:16686>) and Prometheus UI (<http://localhost:9090>)
 

@@ -181,7 +181,7 @@ This training system covers all major topics of the OTCA exam. Below is a detail
 ### 1. Start the System
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 This command starts all services in detached mode:
@@ -218,7 +218,7 @@ curl http://localhost:5000/hello
 ### 4. Stop the System
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ## Project Structure
