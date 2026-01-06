@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+
+  service-python:
+    image: python:3.12
+    container_name: service-python
+    working_dir: /app
+    volumes:
+      - ./service-python:/app
+    command: python app.py
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4317"
+      OTEL_TRACES_EXPORTER: otlp
+      OTEL_METRICS_EXPORTER: otlp
+
+  service-node:
+    image: node:20
+    container_name: service-node
+    working_dir: /app
+    volumes:
+      - ./service-node:/app
+    command: node app.js
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4317"
+      OTEL_TRACES_EXPORTER: otlp
+      OTEL_METRICS_EXPORTER: otlp
+
+  otel-collector:
+    image: otel/opentelemetry-collector:latest
+    container_name: otel-collector
+    volumes:
+      - ./otel-config.yaml:/etc/otel-config.yaml
+    command: ["--config=/etc/otel-config.yaml"]
+    ports:
+      - "4317:4317"
+      - "55681:55681"
+      - "14268:14268"
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.47
+    container_name: jaeger
+    ports:
+      - "16686:16686"
+      - "14250:14250"
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
