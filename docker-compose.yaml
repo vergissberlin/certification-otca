@@ -15,7 +15,7 @@ services:
       OTEL_METRICS_EXPORTER: otlp
 
   service-node:
-    image: node:20
+    image: node:24
     container_name: service-node
     working_dir: /app
     volumes:
